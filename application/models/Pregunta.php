@@ -12,6 +12,7 @@ require_once (app_dir."application/models/mysql_bbdd.php");
 class Pregunta {
 
 
+
     public function removeTag($id){
         $db= new mysql_bbdd();
         $db->connect();
@@ -27,21 +28,21 @@ class Pregunta {
 
         $db= new mysql_bbdd();
         $db->connect();
-        $db->insert('preguntas',array('pregunta'=>$pregunta,'bloque'=>$bloque,'tema'=>$tema,'examen'=>$examen,'ano'=>$ano,'oposicion'=>$oposicion,'tipoOposicion'=>$tipoOposicion,'r1'=>$r1,'r2'=>$r2,'r3'=>$r3,'r4'=>$r4,'respuestaCorrecta'=>$respuestaCorrecta,'descExplicacion'=>$descExplicacion));
+        $db->insert('preguntas',array('pregunta'=>utf8_encode($pregunta),'bloque'=>$bloque,'tema'=>$tema,'examen'=>$examen,'ano'=>$ano,'oposicion'=>$oposicion,'tipoOposicion'=>$tipoOposicion,'r1'=>utf8_encode($r1),'r2'=>utf8_encode($r2),'r3'=>utf8_encode($r3),'r4'=>utf8_encode($r4),'respuestaCorrecta'=>$respuestaCorrecta,'descExplicacion'=>utf8_encode($descExplicacion)));
         $res = $db->getResult();
         $db->disconnect();
         return $res;
     }
 
 
-    public function getTraduccion($cod_idioma){
+    public function getPregunta(){
 
         $db= new mysql_bbdd();
         $db->connect();
-        $db->select('tag','tag_name,texto,id','id_idioma='.$cod_idioma.'');
+        $db->select('preguntas','pregunta','idPregunta=4');
         $res = $db->getResult();
         $db->disconnect();
-        return $res;
+        return $res[0];
 
 
     }

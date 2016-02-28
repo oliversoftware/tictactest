@@ -1,10 +1,10 @@
 <?php
 define("BASE_URL",'http://tictactest.es/');
-define("BASE_URL_BACKEND","http://tictactest.es/app/");
+define("BASE_URL_BACKEND","http://tictactest.es/application/views/");
 define("server_mysql","localhost");
-define("bbdd_mysql","tictactest");
+define("bbdd_mysql","TICTACTEST");
 define("user_mysql","root");
-define("pass_mysql","Fo.2013.08");
+define("pass_mysql","root");
 
 
 //CORREO FRANCISCO OLIVER
