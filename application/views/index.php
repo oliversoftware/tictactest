@@ -1,3 +1,34 @@
+<?php
+session_start();
+
+
+require_once '../controllers/Maincontroller.php';
+$mc=new Maincontroller();
+
+$usuario=$_POST['usuario'];
+$contrasena=$_POST['contrasena'];
+
+
+$datosUsuario= $mc->getUsuario($usuario);
+
+if(sizeof($datosUsuario)==0){
+    echo '<script type="text/javascript">
+           window.location = "'.BASE_URL_BACKEND.'login.php?error=El+usuario+no+existe";
+      </script>';
+
+}else if(true){
+
+    $_SESSION['AUTH']='SI';
+    $_SESSION['ID_USUARIO']=$datosUsuario[0]['idUsuario'];
+    $_SESSION['NOMBRE']=$datosUsuario[0]['nombre'];
+    $_SESSION['EMAIL']=$datosUsuario[0]['email'];
+    $_SESSION['PLAN']=$datosUsuario[0]['plan'];
+    $_SESSION['ACTIVO']=$datosUsuario[0]['activo'];
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -30,15 +61,102 @@
         <div class="wrapper wrapper-content">
             <div class="row">
                 <div class="col-lg-2">
+
+
+
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <span class="label label-success pull-right">Monthly</span>
-                            <h5>Views</h5>
+                            <span class="label label-success pull-right"><?php echo date('d/m/y');?></span>
+                            <h5>TEST</h5>
                         </div>
                         <div class="ibox-content">
-                            <h1 class="no-margins">386,200</h1>
-                            <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
-                            <small>Total views</small>
+
+
+                            <!-- BOTON Y MODAL -->
+                            <div class="text-left">
+                                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">
+                                   Realizar test
+                                </button>
+                            </div>
+                            <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content animated bounceInRight">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            <i class="fa fa-question modal-icon"></i>
+                                            <h4 class="modal-title">¿Qué tipo de test deseas realizar?</h4>
+                                            <small class="font-bold"> La clave de tu futuro está escondida en tu vida diaria.</small>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div class="form-group">
+
+                                                <form method="post" id="formTest" name="formTest" action="<?php echo BASE_URL_BACKEND?>dotest.php">
+                                                <label>Tipo de examen</label>
+                                                <select class="form-control m-b" name="tipoExamen" id="tipoExamen">
+                                                    <option value="0">Selecciona una opción</option>
+                                                    <option value="TEMA">Tema(Examen de un tema en concreto)</option>
+                                                    <option value="BLOQUE">Bloque (Examen de un bloque del temario)</option>
+                                                    <option value="SIMULACRO">Simulacro aleatorio</option>
+                                                    <option value="EXAMEN">Examen año anterior</option>
+                                                </select>
+                                                <label name="ltema" id="ltema"  class="hide tema opcion" for="tema">Tema</label>
+
+                                                <select class="form-control m-b hide tema opcion" name="tema" id="tema">
+                                                    <option value="0">Selecciona tema</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                 </select>
+
+                                                    <label id="lbloque" name="lbloque"  class="hide bloque opcion" for="bloque">Bloque</label>
+
+                                                    <select class="form-control m-b hide bloque opcion" name="bloque" id="bloque">
+                                                        <option value="0">Selecciona bloque</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+
+                                                    </select>
+
+
+                                                    <label id="lano" name="lano"  class="hide ano" for="ano">Año</label>
+
+                                                    <select class="form-control m-b hide examen opcion" name="ano" id="ano">
+                                                        <option value="0">Selecciona año</option>
+                                                        <option value="2008">2008</option>
+
+
+                                                    </select>
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
+                                            <button type="button" class="btn btn-primary doTest">Realizar test</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+
+
+                            <!-- BOTON Y MODAL FIN-->
+
+
+                           <div class="stat-percent font-bold text-success">60% <i class="fa fa-bolt"></i></div>
+                            <small>Puntuación global</small>
                         </div>
                     </div>
                 </div>
@@ -432,5 +550,7 @@
 
     });
 </script>
+
+<script src="../../public/js/backend.js"></script>
 </body>
 </html>

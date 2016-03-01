@@ -13,11 +13,35 @@ require_once (app_dir.'application/libs/class.phpmailer.php');
 require_once (app_dir.'application/libs/class.pop3.php');
 require_once (app_dir.'application/libs/class.smtp.php');
 require_once (app_dir.'application/models/Pregunta.php');
+require_once (app_dir.'application/models/Usuario.php');
 
 
 
 class Maincontroller
 {
+
+    public function crearTest($tipoExamen,$tema,$bloque,$ano){
+        $t= new Test();
+
+        return $t->crearTest($tipoExamen,$tema,$bloque,$ano);
+    }
+
+    public function getUsuario($nombre){
+
+        $u= new Usuario();
+
+        return $u->getUsuario($nombre);
+
+    }
+
+    public function getTotalPreguntas(){
+        $p = new Pregunta();
+
+        $r= $p->getTotalPreguntas();
+        return $r;
+    }
+
+
     public function getPregunta(){
         $p = new Pregunta();
 

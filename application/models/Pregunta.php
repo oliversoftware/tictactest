@@ -34,6 +34,18 @@ class Pregunta {
         return $res;
     }
 
+    public function getTotalPreguntas(){
+
+        $db= new mysql_bbdd();
+        $db->connect();
+        $db->select('preguntas','*');
+        $res = $db->numRows();
+        $db->disconnect();
+        return $res;
+
+
+    }
+
 
     public function getPregunta(){
 

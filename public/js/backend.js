@@ -36,8 +36,80 @@ var backend=
 
 
      $(document).on('click', ".enviarPregunta", function () { backend.onclickEnviarPregunta(this)  })
+     $(document).on('click', ".doTest", function () { backend.onclickdoTest(this)  })
+     $(document).on('change', "#tipoExamen", function () { backend.onchangeTipoExamen(this)  })
 
 
+    },
+    onclickdoTest:function(){
+
+        var tipoExamen=$('#tipoExamen').val();
+        var vacio=0;
+        var mensaje="";
+
+
+        if(tipoExamen==0){
+            vacio=1;
+            mensaje='Seleccione un tipo de examen';
+        }else if(tipoExamen=='TEMA'){
+
+            if($('#tema').val()==0){
+
+                vacio=1;
+                mensaje='Seleccione un tema';
+
+
+            }
+
+
+        }else if(tipoExamen=='BLOQUE'){
+            if($('#bloque').val()==0){
+
+                vacio=1;
+                mensaje='Seleccione un bloque';
+
+
+            }
+        }else if(tipoExamen=='EXAMEN'){
+            if($('#ano').val()==0){
+
+                vacio=1;
+                mensaje='Seleccione el año del examen';
+
+
+            }
+
+        }
+
+        if(vacio!=0){
+           alert(mensaje);
+        }else{
+            $('#formTest').submit();
+        }
+
+
+
+
+    },
+    onchangeTipoExamen:function(id){
+
+        var tipoExamen=$(id).val();
+
+        $('.opcion').addClass('hide');
+        if(tipoExamen=='TEMA'){
+
+            $('.tema').removeClass('hide');
+
+
+        }else if(tipoExamen=='BLOQUE'){
+            $('.bloque').removeClass('hide');
+        }else if (tipoExamen=='SIMULACRO'){
+            $('.simulacro').removeClass('hide');
+
+        }else if(tipoExamen=='EXAMEN'){
+            $('.examen').removeClass('hide');
+
+        }
     },
 
 

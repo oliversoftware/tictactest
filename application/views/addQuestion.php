@@ -1,8 +1,9 @@
 
 <?php
 
-include '../controllers/Maincontroller.php';
+require_once '../controllers/Maincontroller.php';
 $mc=new Maincontroller();
+$nump= $mc->getTotalPreguntas();
 
 ?>
 <!DOCTYPE html>
@@ -33,7 +34,7 @@ $mc=new Maincontroller();
 
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>Añadir pregunta tipo test</h2>
+                <h2>Añadir pregunta tipo test | Total de preguntas <?php echo $nump;?></h2>
                 <ol class="breadcrumb">
                     <li>
                         <a href="<?php echo BASE_URL_BACKEND?>index.php">Inicio</a>
@@ -93,9 +94,11 @@ $mc=new Maincontroller();
 
                                         <div class="form-group"><label>Bloque</label>
                                             <select class="form-control m-b" name="bloque" id="tema">
+                                                <option value="3">3</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
-                                                <option value="3">3</option>
+
+
                                                 <option value="4">4</option>
                                                 <option value="5">5</option>
                                                 <option value="6">6</option>
@@ -154,11 +157,13 @@ $mc=new Maincontroller();
                                             <select class="form-control m-b" name="examen" id="examen">
                                                 <option value="SI">SI</option>
                                                 <option value="NO">NO</option>
+
+
                                             </select>
                                         </div>
                                         <div class="form-group"><label>Año</label>
                                             <select class="form-control m-b" name="ano" id="ano">
-
+                                                <option value="2008">2008</option>
                                                 <option value="">--</option>
                                                 <option value="2000">2000</option>
                                                 <option value="2001">2001</option>
@@ -168,7 +173,7 @@ $mc=new Maincontroller();
                                                 <option value="2005">2005</option>
                                                 <option value="2006">2006</option>
                                                 <option value="2007">2007</option>
-                                                <option value="2008">2008</option>
+
                                                 <option value="2009">2009</option>
                                                 <option value="2010">2010</option>
                                                 <option value="2011">2011</option>
