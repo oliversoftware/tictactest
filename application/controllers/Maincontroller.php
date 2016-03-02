@@ -14,6 +14,7 @@ require_once (app_dir.'application/libs/class.pop3.php');
 require_once (app_dir.'application/libs/class.smtp.php');
 require_once (app_dir.'application/models/Pregunta.php');
 require_once (app_dir.'application/models/Usuario.php');
+require_once (app_dir.'application/models/Test.php');
 
 
 
